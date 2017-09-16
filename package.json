@@ -1,0 +1,24 @@
+{
+  "name": "prog3finnal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aram2003/prog3finnal.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aram2003/prog3finnal/issues"
+  },
+  "homepage": "https://github.com/Aram2003/prog3finnal#readme",
+  "dependencies": {
+    "async-foreach": "^0.1.3",
+    "cheerio": "^1.0.0-rc.2",
+    "request": "^2.81.0"
+  }
+}
