@@ -53,14 +53,16 @@ urls = [
 for(i=0;i<urls.length;i++){
 	request(urls[i], function(error, response, page){
     if(!error){
-        var $ = cheerio.load(page);
-        var name = $("h1.gameObject__title");
+        var $ = cheerio.load(page); 
+        var name = $("a.wiki-title");
         var release = $("ul.kubrick-info__releasedate");
         var description = $("dd.pod-objectStats-info__deck");
+        var rating = $("div.gs-score__cell");
             var date = {
                 game:$(name).text(),
                 releasedate:$(release).text(),
-                description:$(description).text()
+                description:$(description).text(),
+                rating:$(rating).text()
             }
             console.log(date);
             dates.push(date);
