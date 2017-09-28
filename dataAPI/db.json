@@ -1,0 +1,11 @@
+{
+    "cols":[
+        {"id":"","label":"Element","pattern":"","type":"string"},
+        {"id":"","label":"Percentage","pattern":"","type":"number"}
+    ],
+    "rows":[
+        {"c":[{"v":"Nitrogen"},{"v":0.78}]},
+        {"c":[{"v":"Oxygen"},{"v":0.21}]},
+        {"c":[{"v":"Other"},{"v":0.01}]}
+    ]
+}

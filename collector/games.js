@@ -68,5 +68,6 @@ for(i=0;i<urls.length;i++){
             dates.push(date);
         }
         fs.writeFile(path, JSON.stringify(dates));
+        
     });
 }
