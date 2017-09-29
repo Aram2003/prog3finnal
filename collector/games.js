@@ -50,6 +50,7 @@ urls = [
 "https://www.gamespot.com/grand-theft-auto-the-trilogy/",
 "https://www.gamespot.com/grand-theft-auto-the-classics-collection/"
 ];
+var key = "/n";
 for(i=0;i<urls.length;i++){
 	request(urls[i], function(error, response, page){
     if(!error){
@@ -63,11 +64,20 @@ for(i=0;i<urls.length;i++){
                 releasedate:$(release).text(),
                 description:$(description).text(),
                 rating:$(rating).text()
+                
             }
             console.log(date);
             dates.push(date);
         }
         fs.writeFile(path, JSON.stringify(dates));
-        
+        /*for(var key in path){
+            delete[key];
+        }
+        var res = date;
+        res = res.toString("/n",'');
+        var str = path;
+        function trim(str) {
+            return str.toString(/\\n/g,'');
+        }*/
     });
 }
