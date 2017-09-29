@@ -68,6 +68,14 @@ for(i=0;i<urls.length;i++){
             dates.push(date);
         }
         fs.writeFile(path, JSON.stringify(dates));
-        
+        /*for(var key in path){
+            delete[key];
+        }
+        var res = date;
+        res = res.toString("/n",'');
+        var str = path;
+        function trim(str) {
+            return str.toString(/\\n/g,'');
+        }*/
     });
 }
