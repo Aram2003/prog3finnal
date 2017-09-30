@@ -64,12 +64,18 @@ for(i=0;i<urls.length;i++){
                 releasedate:$(release).text().trim(),
                 description:$(description).text().trim(),
                 rating:$(rating).text().trim()
+<<<<<<< HEAD
                 
+=======
+>>>>>>> ef53dacd5b18237e20355ae1e6bdf12b7aa2d578
             }
             console.log(date);
             dates.push(date);
         }
         fs.writeFile(path, JSON.stringify(dates));
+<<<<<<< HEAD
         
+=======
+>>>>>>> ef53dacd5b18237e20355ae1e6bdf12b7aa2d578
     });
 }
