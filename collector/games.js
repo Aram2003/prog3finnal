@@ -1,7 +1,9 @@
+process.exit();
+
 var request = require('request');
 var cheerio = require('cheerio');
 var fs = require('fs');
-var forEach = require("async-foreach");
+var forEach = require("async-foreach").forEach;
 var path = "./data/games.json";
 var dates = [];
 urls = [
@@ -51,31 +53,25 @@ urls = [
 "https://www.gamespot.com/grand-theft-auto-the-classics-collection/"
 ];
 
-for(i=0;i<urls.length;i++){
-	request(urls[i], function(error, response, page){
-    if(!error){
-        var $ = cheerio.load(page); 
-        var name = $("a.wiki-title");
-        var release = $("ul.kubrick-info__releasedate");
-        var description = $("dd.pod-objectStats-info__deck");
-        var rating = $("div.gs-score__cell");
-            var date = {
-                game:$(name).text().trim(),
-                releasedate:$(release).text().trim(),
-                description:$(description).text().trim(),
-                rating:$(rating).text().trim()
-<<<<<<< HEAD
-                
-=======
->>>>>>> ef53dacd5b18237e20355ae1e6bdf12b7aa2d578
+    forEach(urls,function(link,index,arr){
+	    request(link, function(error, response, page){
+             if(!error){
+                var $ = cheerio.load(page); 
+               
+ 
+                var name = $("a.wiki-title");
+                var release = $("ul.kubrick-info__releasedate");
+                var description = $("dd.pod-objectStats-info__deck");
+                var rating = $("div.gs-score__cell")[0];
+                var date = {
+                    game:$(name).text().trim(),
+                    releasedate:$(release).text().trim().replace("\n\n        released","").replace("First Released",""),
+                    description:$(description).text().trim().replace("/",""),
+                    rating:$(rating).text().trim()
+                }
+                console.log(page);
+                dates.push(date);
             }
-            console.log(date);
-            dates.push(date);
-        }
-        fs.writeFile(path, JSON.stringify(dates));
-<<<<<<< HEAD
-        
-=======
->>>>>>> ef53dacd5b18237e20355ae1e6bdf12b7aa2d578
+            fs.writeFile(path, JSON.stringify(dates));
     });
-}
+});
