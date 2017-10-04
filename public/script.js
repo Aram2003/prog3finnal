@@ -1,8 +1,10 @@
  google.charts.load('current', {'packages': ['orgchart','table','bar','corechart']});
  google.charts.setOnLoadCallback(drawTable);
+ google.charts.setOnLoadCallback(drawPie);
  google.charts.setOnLoadCallback(drawOrgChart);
  google.charts.setOnLoadCallback(drawChart);
  google.charts.setOnLoadCallback(drawScatter);
+ google.charts.setOnLoadCallback(drawColumn);
  
 
  function drawTable() {
@@ -128,10 +130,68 @@ function drawScatter(){
         }
     });
 }
-
+function drawPie(){
+    $.ajax({
+        url: "https://rawgit.com/Aram2003/prog3finnal/master/collector/data/games.json",
+        dataType: "json",
+        success: function (jsonData) {
+          console.log(jsonData);
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'game');
+            data.addColumn('number', 'rating');
+            for (var i = 0; i < jsonData.games.length; i++) {
+              console.log(jsonData.games[i].game);
+                data.addRow([
+                    jsonData.games[i].game, parseFloat(jsonData.games[i].rating)
+                ]);
+            }
+            var options = {
+                allowHtml: true,
+                showRowNumber: true,
+                width: '40%',
+                height: '60%',
+                is3D:true
+            };
+            var table = new google.visualization.PieChart(document.getElementById('pie'));
+            var formatter = new google.visualization.BarFormat({ width: 100 });
+            table.draw(data, options);
+        }
+    });
+}
+function drawColumn(){
+    $.ajax({
+        url: "https://rawgit.com/Aram2003/prog3finnal/master/collector/data/games.json",
+        dataType: "json",
+        success: function (jsonData) {
+          console.log(jsonData);
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'game');
+            data.addColumn('number', 'rating');
+            for (var i = 0; i < jsonData.games.length; i++) {
+              console.log(jsonData.games[i].game);
+                data.addRow([
+                    jsonData.games[i].game, parseFloat(jsonData.games[i].rating)
+                ]);
+            }
+            var options = {
+                allowHtml: true,
+                showRowNumber: true,
+                width: '40%',
+                height: '60%',
+                is3D:true
+            };
+            var table = new google.visualization.ColumnChart(document.getElementById('column'));
+            var formatter = new google.visualization.BarFormat({ width: 100 });
+            table.draw(data, options);
+        }
+    });
+}
 $(window).resize(function () {
     drawTable();
     drawOrgChart();
     drawChart();
+    drawScatter();
+    drawPie();
+    drawColumn();
 });
 
