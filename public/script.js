@@ -186,6 +186,7 @@ function drawColumn(){
         }
     });
 }
+
 $(window).resize(function () {
     drawTable();
     drawOrgChart();
